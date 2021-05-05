@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { CAPTURE, pokemonReducer, RELEASE } from './PokemonReducer';
+import { ADD_POKEMON, CAPTURE, pokemonReducer, RELEASE } from './PokemonReducer';
 
 export const PokemonContext = createContext();
 
@@ -22,6 +22,10 @@ export const PokemonProvider = (props) => {
   const release = pokemon => () => {
     dispatch({ type: RELEASE, pokemon });
   };
+
+  const addPokemon = pokemon => {
+    dispatch({ type: ADD_POKEMON, pokemon });
+  };
   
   const { wildPokemon, capturedPokemon } = state;
 
@@ -29,7 +33,8 @@ export const PokemonProvider = (props) => {
     wildPokemon,
     capturedPokemon,
     release,
-    capture
+    capture,
+    addPokemon
   };
 
   return (
